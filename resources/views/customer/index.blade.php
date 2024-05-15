@@ -6,6 +6,9 @@
     <div class="container mt-5">
         <div class="row">
             <div class="col-md-12">
+                @if (session('status'))
+                    <div class="alert alert-success">{{session('status')}}</div>    
+                @endif
                 <div class="card">
                     <div class="card-header">
                         <h4>
@@ -35,7 +38,12 @@
                                         <td>{{$customer->dob}}</td>
                                         <td>
                                             <a href="{{ url('customer/'.$customer->id.'/edit')}}" class="btn btn-success mx-2">Edit</a>
-                                            <a href="{{ url('customer/'.$customer->id.'/delete')}}" class="btn btn-danger mx-2" onclick="return confirm('are you sure?')">Delete</a>
+                                            @if(session()->has('userRoleCode') && (session('userRoleCode') == 'Owner' || session('userRoleCode') == 'Manager'))
+                                                <a href="{{ url('customer/'.$customer->id.'/deactivate')}}" class="btn btn-secondary mx-2" onclick="return confirm('are you sure?')">Deactivate</a>
+                                            @endif
+                                            @if(session()->has('userRoleCode') && (session('userRoleCode') == 'Owner'))
+                                                <a href="{{ url('customer/'.$customer->id.'/delete')}}" class="btn btn-danger mx-2" onclick="return confirm('are you sure?')">Delete</a>
+                                            @endif
                                         </td>
                                     </tr>
                                 @endforeach

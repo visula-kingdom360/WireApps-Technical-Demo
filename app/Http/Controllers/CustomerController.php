@@ -27,8 +27,7 @@ class CustomerController extends Controller
 
     public function index() 
     {
-        $customers = Customer::get();
-        // return $customers;
+        $customers = Customer::where(['status' => 'A'])->get();
         return view('customer.index', compact('customers'));
     }
 
@@ -40,9 +39,7 @@ class CustomerController extends Controller
     public function edit(int $id)
     {
         $customer = Customer::findOrFail($id);
-        // $customer = Customer::find($id); // empty page
         return view('customer.edit', compact('customer'));
-        // return view('customer.create');
     }
 
     public function store(Request $request)
@@ -76,21 +73,38 @@ class CustomerController extends Controller
         ]);
 
         return redirect()->back()->with('status', 'Customer Update');
-        // return view('customer.create');
+    }
+
+    public function deactivate(int $id)
+    {
+        Customer::findOrFail($id)->update([
+            'status' => 'D'
+        ]);
+
+        return redirect()->back()->with('status', 'Customer Removed');
     }
 
     public function destroy(int $id)
     {
         $customer = Customer::findOrFail($id);
         $customer->delete();
-        // $customer = Customer::find($id); // empty page
         return redirect()->back()->with('status', 'Customer Deleted');
-        // return view('customer.edit', compact('customer'));
-        // return view('customer.create');
     }
 
     public function getAPI()
     {
-        return Customer::get();
+        return response()->json(['Customer' => Customer::where(['status' => 'A'])->all()], 200);
+
+    }
+
+    public function getIdDetailsAPI($id)
+    {
+        $customer = Customer::where(['id' => $id])->get();
+
+        if(count($customer) > 0){
+            return response()->json(['Customer' => $customer], 200);
+        }else{
+            return response()->json(['message' => 'ID not found'], 404);
+        }
     }
 }

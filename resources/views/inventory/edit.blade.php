@@ -43,6 +43,20 @@
                                     <span class="text-danger"> {{$message}}</span>
                                 @enderror
                             </div>
+                            <div class="mb-3">
+                                <label>Price</label>
+                                <input type="text" name="price" class="form-control" value="{{ $inventory->price }}" />
+                                @error('price')
+                                    <span class="text-danger"> {{$message}}</span>
+                                @enderror
+                            </div>
+                            <div class="mb-3">
+                                <label>Quantity</label>
+                                <input type="text" name="quantity" class="form-control" value="{{ $inventory->quantity }}" />
+                                @error('quantity')
+                                    <span class="text-danger"> {{$message}}</span>
+                                @enderror
+                            </div>
                             <div class="mb3">
                                 <button type="submit" class="btn btn-primary">Update</button>
                             </div>

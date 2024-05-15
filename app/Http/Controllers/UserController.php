@@ -58,10 +58,15 @@ class UserController extends Controller
         //     return redirect('login')->with('status', 'Password is incorrect');
         // }
         
-        return redirect('user/home')->with('status', 'Logged in successful');;
+        $user_role_code = json_decode(json_encode(session('userInfo')),true)[0]['user_roles_code'];
+        session(['userRoleCode' => $user_role_code]);
+        return redirect('user/home')->with('status', 'Logged in successful');
     }
 
     public function home(){
+        // $session['userInfo'];
+
+        var_dump(session('userRoleCode'));
         return view('user.home');
     }
 }

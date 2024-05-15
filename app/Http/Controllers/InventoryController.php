@@ -8,14 +8,15 @@ use Illuminate\Http\Request;
 
 class InventoryController extends Controller
 {
+    // use StocksController;
 
     protected $feildValidation = [
-        'code' => [
-            'required',
-            'min:3',
-            'max:100',
-            'string'
-            ],
+        // 'code' => [
+        //     'required',
+        //     'min:5',
+        //     'max:5',
+        //     'string'
+        //     ],
         'name' => [
             'required',
             'min:3',
@@ -25,7 +26,7 @@ class InventoryController extends Controller
     ];
 
     protected $errorResponse = [
-        'code.required' => 'Name cannot be empty',
+        // 'code.required' => 'Name cannot be empty',
         'name.required' => 'Name cannot be empty',
         'name.min' => 'Give atleast 3 charatcters',
         'name.max' => 'Give less than 100 characters'
@@ -33,9 +34,7 @@ class InventoryController extends Controller
 
     public function index() 
     {
-        $inventories = Inventory::get();
-        // return $inventories;
-        // return view('tempdata', compact('inventories'));
+        $inventories = Inventory::where(['status' => 'A'])->get();
         return view('inventory.index', compact('inventories'));
     }
 
@@ -57,9 +56,10 @@ class InventoryController extends Controller
         $request->validate($this->feildValidation, $this->errorResponse);
 
         Inventory::create([
-            'code' => $request->code,
             'name' => $request->name,
             'description' => $request->description ?? '',
+            'price' => $request->price ?? 0,
+            'quantity' => $request->quantity ?? 0,
             'status' => 'A'
         ]);
 
@@ -72,14 +72,24 @@ class InventoryController extends Controller
         $request->validate($this->feildValidation, $this->errorResponse);
 
         Inventory::findOrFail($id)->update([
-            'code' => $request->code,
             'name' => $request->name,
             'description' => $request->description ?? '',
+            'price' => $request->price ?? 0,
+            'quantity' => $request->quantity ?? 0,
             'status' => 'A'
         ]);
 
         return redirect()->back()->with('status', 'Inventory Update');
         // return view('Inventory.create');
+    }
+
+    public function deactivate(int $id)
+    {
+        Inventory::findOrFail($id)->update([
+            'status' => 'D'
+        ]);
+
+        return redirect()->back()->with('status', 'Inventory Removed');
     }
 
     public function destroy(int $id)
@@ -94,6 +104,17 @@ class InventoryController extends Controller
 
     public function getAPI()
     {
-        return Inventory::get();
+        return response()->json(['Inventory' => Inventory::where(['status' => 'A'])->all()], 200);
+    }
+
+    public function getCodeDetailsAPI($code)
+    {
+        $inventory = Inventory::where(['code' => $code])->get();
+
+        if(count($inventory) > 0){
+            return response()->json(['Inventory' => $inventory], 200);
+        }else{
+            return response()->json(['message' => 'ID not found'], 404);
+        }
     }
 }

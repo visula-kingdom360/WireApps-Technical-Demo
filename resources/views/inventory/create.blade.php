@@ -21,13 +21,6 @@
                         <form action="{{ url('inventory/create') }}" method="POST">
                             @csrf
                             <div class="mb-3">
-                                <label>Code</label>
-                                <input type="text" name="code" class="form-control" value="{{ old('code')}}" />
-                                @error('code')
-                                    <span class="text-danger"> {{$message}}</span>
-                                @enderror
-                            </div>
-                            <div class="mb-3">
                                 <label>Name</label>
                                 <input type="text" name="name" class="form-control" value="{{ old('name')}}" />
                                 @error('name')
@@ -38,6 +31,20 @@
                                 <label>Description</label>
                                 <textarea type="text" name="description" class="form-control" rows="3">{{ old('description')}}</textarea>
                                 @error('description')
+                                    <span class="text-danger"> {{$message}}</span>
+                                @enderror
+                            </div>
+                            <div class="mb-3">
+                                <label>Price</label>
+                                <input type="text" name="price" class="form-control" value="{{ old('price')}}" />
+                                @error('price')
+                                    <span class="text-danger"> {{$message}}</span>
+                                @enderror
+                            </div>
+                            <div class="mb-3">
+                                <label>Quantity</label>
+                                <input type="text" name="quantity" class="form-control" value="{{ old('quantity')}}" />
+                                @error('quantity')
                                     <span class="text-danger"> {{$message}}</span>
                                 @enderror
                             </div>
