@@ -64,3 +64,16 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## TODO to check the system
+
+First validate the system mingrate tables with the below command
+php artisan migrate
+
+For table data use the below command
+php artisan migrate --seed
+
+The to Run the system
+php artisan serve
+
+## Note the User roles handling was not validated properly
