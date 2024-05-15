@@ -21,4 +21,13 @@ Route:: get('customer/{id}/edit', [CustomerController::class, 'edit']);
 Route:: put('customer/{id}/edit', [CustomerController::class, 'update']);
 Route:: get('customer/{id}/delete', [CustomerController::class, 'destroy']);
 
-Route:: get('inventory', [InventoryController::class, 'inventory']);
+Route:: get('customer/get/all', [CustomerController::class, 'getAPI']);
+
+Route:: get('inventory', [InventoryController::class, 'index']);
+Route:: get('inventory/create', [InventoryController::class, 'create']);
+Route:: post('inventory/create', [InventoryController::class, 'store']);
+Route:: get('inventory/{id}/edit', [InventoryController::class, 'edit']);
+Route:: put('inventory/{id}/edit', [InventoryController::class, 'update']);
+Route:: get('inventory/{id}/delete', [InventoryController::class, 'destroy']);
+
+Route:: get('inventory/get/all', [CustomerController::class, 'getAPI']);

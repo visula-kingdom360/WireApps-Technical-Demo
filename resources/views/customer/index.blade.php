@@ -35,7 +35,7 @@
                                         <td>{{$customer->dob}}</td>
                                         <td>
                                             <a href="{{ url('customer/'.$customer->id.'/edit')}}" class="btn btn-success mx-2">Edit</a>
-                                            <a href="{{ url('customer/'.$customer->id.'/delete')}}" class="btn btn-danger mx-2" onclick="return confirm('areyou sure?')">Delete</a>
+                                            <a href="{{ url('customer/'.$customer->id.'/delete')}}" class="btn btn-danger mx-2" onclick="return confirm('are you sure?')">Delete</a>
                                         </td>
                                     </tr>
                                 @endforeach

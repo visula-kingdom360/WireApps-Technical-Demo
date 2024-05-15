@@ -35,20 +35,20 @@ class InventoryController extends Controller
     {
         $inventories = Inventory::get();
         // return $inventories;
-        return view('tempdata', compact('inventories'));
+        // return view('tempdata', compact('inventories'));
         return view('inventory.index', compact('inventories'));
     }
 
     public function create()
     {
-        return view('Inventory.create');
+        return view('inventory.create');
     }
 
     public function edit(int $id)
     {
-        $Inventory = Inventory::findOrFail($id);
+        $inventory = Inventory::findOrFail($id);
         // $Inventory = Inventory::find($id); // empty page
-        return view('inventory.edit', compact('Inventory'));
+        return view('inventory.edit', compact('inventory'));
         // return view('Inventory.create');
     }
 
@@ -90,5 +90,10 @@ class InventoryController extends Controller
         return redirect()->back()->with('status', 'Inventory Deleted');
         // return view('Inventory.edit', compact('Inventory'));
         // return view('Inventory.create');
+    }
+
+    public function getAPI()
+    {
+        return Inventory::get();
     }
 }

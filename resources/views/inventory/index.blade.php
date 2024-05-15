@@ -31,7 +31,7 @@
                                         <td>{{$inventory->description}}</td>
                                         <td>
                                             <a href="{{ url('inventory/'.$inventory->id.'/edit')}}" class="btn btn-success mx-2">Edit</a>
-                                            <a href="{{ url('inventory/'.$inventory->id.'/delete')}}" class="btn btn-danger mx-2" onclick="return confirm('areyou sure?')">Delete</a>
+                                            <a href="{{ url('inventory/'.$inventory->id.'/delete')}}" class="btn btn-danger mx-2" onclick="return confirm('are you sure?')">Delete</a>
                                         </td>
                                     </tr>
                                 @endforeach

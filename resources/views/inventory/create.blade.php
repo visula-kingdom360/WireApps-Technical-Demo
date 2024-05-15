@@ -22,7 +22,7 @@
                             @csrf
                             <div class="mb-3">
                                 <label>Code</label>
-                                <textarea type="text" name="code" class="form-control" rows="3">{{ old('code')}}</textarea>
+                                <input type="text" name="code" class="form-control" value="{{ old('code')}}" />
                                 @error('code')
                                     <span class="text-danger"> {{$message}}</span>
                                 @enderror
