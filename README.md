@@ -77,3 +77,9 @@ The to Run the system
 php artisan serve
 
 ## Note the User roles handling was not validated properly
+
+## For API calls use the below mentioned GET API calls
+This API will return all the Active customer details in System => http://127.0.0.1:8000/customer/get/all
+This API will return all the Active inventory details in System => http://127.0.0.1:8000/inventory/get/all
+This API will return the customer details for the ID passed in System => http://127.0.0.1:8000/customer/get/{id}
+This API will return the inventory details for the ID passed in System => http://127.0.0.1:8000/inventory/get/{code}

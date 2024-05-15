@@ -7,7 +7,7 @@ use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\StocksController;
 
 Route::get('/', function () {
-    return view('welcome'); // TODO:: need a landing page
+    return view('welcome');
 });
 
 Route:: get('login', [UserController::class, 'login']);
@@ -30,7 +30,6 @@ Route:: get('inventory/{id}/edit', [InventoryController::class, 'edit']);
 Route:: put('inventory/{id}/edit', [InventoryController::class, 'update']);
 Route:: get('inventory/{id}/deactivate', [InventoryController::class, 'deactivate']);
 Route:: get('inventory/{id}/delete', [InventoryController::class, 'destroy']);
-// Route:: get('stocks/{code}/view', [InventoryController::class, 'stocks']);
 
 Route:: get('customer/get/all', [CustomerController::class, 'getAPI']);
 Route:: get('inventory/get/all', [InventoryController::class, 'getAPI']);
