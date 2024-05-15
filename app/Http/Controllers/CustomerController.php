@@ -88,4 +88,9 @@ class CustomerController extends Controller
         // return view('customer.edit', compact('customer'));
         // return view('customer.create');
     }
+
+    public function getAPI()
+    {
+        return Customer::get();
+    }
 }

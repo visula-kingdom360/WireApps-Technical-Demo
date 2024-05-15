@@ -30,4 +30,5 @@ Route:: get('inventory/{id}/edit', [InventoryController::class, 'edit']);
 Route:: put('inventory/{id}/edit', [InventoryController::class, 'update']);
 Route:: get('inventory/{id}/delete', [InventoryController::class, 'destroy']);
 
-Route:: get('inventory/get/all', [CustomerController::class, 'getAPI']);
+Route:: get('customer/get/all', [CustomerController::class, 'getAPI']);
+Route:: get('inventory/get/all', [InventoryController::class, 'getAPI']);
